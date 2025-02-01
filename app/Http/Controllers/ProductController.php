@@ -63,10 +63,6 @@ class ProductController extends Controller
             //save the image to the database
             $product->image = $imageName;
             $product->save();
-
-
-            dd($request->all()); // Dump all request data
-            dd($request->file('image')); // Dump the uploaded file
         }
 
 
