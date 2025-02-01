@@ -27,23 +27,33 @@
                     <div class="card-header bg-dark">
                         <h3 class="text-white">Create product</h3>
                     </div>
-                    <form action="">
+                    <form enctype="multipart/form-data" action="{{route('products.store')}}" method="post">
+                        @csrf
 
                         <div class="card-body ">
 
                             <div class="mb-3">
                                 <label for="" class="form-lebel h5">Name</label>
                                 <input type="text" class="form-control form-control-lg" placeholder="Name" name="name">
+                                @error('name')
+                                <p class="text-danger"> {{$message}} </p>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="" class="form-lebel h5">SKU</label>
                                 <input type="text" class="form-control form-control-lg" placeholder="SKU" name="sku">
+                                @error('sku')
+                                <p class="text-danger"> {{$message}} </p>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="" class="form-lebel h5">Price</label>
                                 <input type="text" class="form-control form-control-lg" placeholder="Price" name="price">
+                                @error('price')
+                                <p class="text-danger"> {{$message}} </p>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
