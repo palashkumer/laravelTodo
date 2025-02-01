@@ -17,7 +17,7 @@
 
         <div class="row justify-content-center mt-4">
             <div class="col-md-10 d-flex justify-content-end ">
-                <a href="#" class="btn btn-dark">Back</a>
+                <a href="{{route('products.index')}}" class="btn btn-dark">Back</a>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
 
                             <div class="mb-3">
                                 <label for="" class="form-lebel h5">Name</label>
-                                <input type="text" class="form-control form-control-lg" placeholder="Name" name="name">
+                                <input type="text" value="{{old('name')}}" class="form-control form-control-lg" placeholder="Name" name="name">
                                 @error('name')
                                 <p class="text-danger"> {{$message}} </p>
                                 @enderror
@@ -42,7 +42,7 @@
 
                             <div class="mb-3">
                                 <label for="" class="form-lebel h5">SKU</label>
-                                <input type="text" class="form-control form-control-lg" placeholder="SKU" name="sku">
+                                <input type="text" value="{{old('sku')}}" class="form-control form-control-lg" placeholder="SKU" name="sku">
                                 @error('sku')
                                 <p class="text-danger"> {{$message}} </p>
                                 @enderror
@@ -50,7 +50,7 @@
 
                             <div class="mb-3">
                                 <label for="" class="form-lebel h5">Price</label>
-                                <input type="text" class="form-control form-control-lg" placeholder="Price" name="price">
+                                <input type="text" value="{{old('price')}}" class="form-control form-control-lg" placeholder="Price" name="price">
                                 @error('price')
                                 <p class="text-danger"> {{$message}} </p>
                                 @enderror
@@ -58,7 +58,7 @@
 
                             <div class="mb-3">
                                 <label for="" class="form-lebel h5"> Description </label>
-                                <textarea name="description" cols="30" rows="5" class="form-control form-control-lg"></textarea>
+                                <textarea name="description" value="{{old('description')}}" cols="30" rows="5" class="form-control form-control-lg"></textarea>
                             </div>
 
                             <div class="mb-3">
