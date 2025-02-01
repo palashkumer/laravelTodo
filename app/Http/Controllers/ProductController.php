@@ -10,7 +10,10 @@ class ProductController extends Controller
     public function index() {}
 
     // This method will create products 
-    public function create() {}
+    public function create()
+    {
+        return view('products.create');
+    }
 
     // This method will store products in db
     public function store() {}
