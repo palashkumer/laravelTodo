@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,8 +30,7 @@ class ProductController extends Controller
             'name' => 'required|min:5',
             'sku' => 'required|min:3',
             'price' => 'required|numeric',
-            // 'image' => 'nullable|image',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
         ];
 
         if ($request->image != "") {
@@ -42,14 +42,13 @@ class ProductController extends Controller
             return redirect()->route('products.create')->withInput()->withErrors($validator);
         }
 
-        //here we will intert product in db
+        //here we will insert product in db
         $product = new Product();
         $product->name = $request->name;
         $product->sku = $request->sku;
         $product->price = $request->price;
         $product->description = $request->description;
         $product->save();
-
 
         if ($request->image != "") {
 
@@ -59,23 +58,12 @@ class ProductController extends Controller
             $imageName = time() . '.' . $ext;  //unique image name
 
             //save image to products directory
-            $image->move(public_path('uploads/products/' . $imageName));
+            $image->move('uploads/products/', $imageName);
 
             //save the image to the database
             $product->image = $imageName;
             $product->save();
         }
-
-
-
-
-
-        // if ($request->hasFile('image')) {
-        //     $imagePath = $request->file('image')->store('public/uploads/products');
-        //     $imageName = basename($imagePath);
-        //     $product->image = $imageName;
-        //     $product->save();
-        // }
 
         return redirect()->route('products.index')->with('success', 'Product added successfully');
     }
@@ -94,7 +82,7 @@ class ProductController extends Controller
             'name' => 'required|min:5',
             'sku' => 'required|min:3',
             'price' => 'required|numeric',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -108,15 +96,21 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->save();
 
-        if ($request->hasFile('image')) {
-            // Delete old image
-            if (!empty($product->image) && Storage::exists('public/uploads/products/' . $product->image)) {
-                Storage::delete('public/uploads/products/' . $product->image);
-            }
+        if ($request->image != "") {
 
-            // Store new image
-            $imagePath = $request->file('image')->store('public/uploads/products');
-            $product->image = basename($imagePath);
+            //delete old image
+            File::delete(public_path('uploads/products/', $product->image));
+
+            // here we will store the image
+            $image = $request->image;
+            $ext = $image->getClientOriginalExtension();
+            $imageName = time() . '.' . $ext;  //unique image name
+
+            //save image to products directory
+            $image->move('uploads/products/', $imageName);
+
+            //save the image to the database
+            $product->image = $imageName;
             $product->save();
         }
         return redirect()->route('products.index')->with('success', 'Product updated successfully');

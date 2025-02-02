@@ -57,13 +57,13 @@
                                 <label for="" class="form-lebel h5">Description</label>
                                 <textarea name="description" cols="30" rows="5" class="form-control form-control-lg" value="{{old('description', $product->description)}}"></textarea>
                             </div>
-                            <!-- <div class="mb-3">
-                                <label for="" class="form-lebel h5">Image</label>
-                                <input type="file" class="form-control form-control-lg" placeholder="image" name="image">
+                            <div class="mb-3">
+                                <label for="" class="form-lebel h5">Image Upload</label>
+                                <input type="file" class="form-control form-control-lg" name="image">
                                 @if ($product->image != "")
                                 <img class="w-50 my-3" src="{{ asset('uploads/products/'.$product->image)}}" alt="">
                                 @endif
-                            </div> -->
+                            </div>
                             <div class="d-grid">
                                 <button class="btn btn-lg btn-primary">Update</button>
                             </div>

@@ -63,7 +63,7 @@
 
                             <div class="mb-3">
                                 <label class="form-lebel h5">Image</label>
-                                <input type="file" class="form-control form-control-lg" placeholder="image" name="image">
+                                <input type="file" class="form-control form-control-lg" name="image">
                             </div>
 
                             <div class="d-grid">
