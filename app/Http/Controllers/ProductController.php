@@ -59,7 +59,7 @@ class ProductController extends Controller
             $imageName = time() . '.' . $ext;  //unique image name
 
             //save image to products directory
-            $image->move(public_path('uploads/products_image/' . $imageName));
+            $image->move(public_path('uploads/products/' . $imageName));
 
             //save the image to the database
             $product->image = $imageName;
@@ -123,5 +123,17 @@ class ProductController extends Controller
     }
 
     // This method will delete products 
-    public function destroy() {}
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+
+        if (!empty($product->image) && Storage::exists('public/uploads/products/' . $product->image)) {
+            Storage::delete('public/uploads/products/' . $product->image);
+        }
+
+        // delete product from db
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+    }
 }

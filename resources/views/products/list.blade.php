@@ -54,7 +54,7 @@
                             <td>{{$product->id }}</td>
                             <td>
                                 @if ($product->image != "")
-                                <img width="60" src="{{ asset('/uploads/products_image/'.$product->image)}}" alt="">
+                                <img width="60" src="{{ asset('/uploads/products/'.$product->image)}}" alt="">
                                 @else
                                 No image
                                 @endif
@@ -68,7 +68,11 @@
 
                             <td>
                                 <a href="{{route('products.edit', $product->id)}}" class="btn btn-dark">Edit</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                <a href="#" onclick="deleteProduct({{$product->id}});" class="btn btn-danger">Delete</a>
+                                <form id="delete-product-form-{{$product->id}}" action="{{route('products.destroy',$product->id)}}" method="post">
+                                    @csrf
+                                    @method ('delete')
+                                </form>
                             </td>
 
                         </tr>
@@ -84,6 +88,15 @@
         </div>
     </div>
     </div>
+
+
+    <script>
+        function deleteProduct(id) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                document.getElementById('delete-product-form-' + id).submit();
+            }
+        }
+    </script>
 </body>
 
 </html>
