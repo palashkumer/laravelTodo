@@ -4,8 +4,8 @@ This is a basic Laravel CRUD (Create, Read, Update, Delete) application for mana
 
 ## 🚀 Features
 
--  Create, edit, and delete notes
--  User registration and login with Breeze Auth
+-  Create, edit, and delete products
+-  User authentication using Laravel Breeze
 -  Email SMTP.
 
 ## 🛠️ Installation
@@ -14,7 +14,7 @@ This is a basic Laravel CRUD (Create, Read, Update, Delete) application for mana
 
    ```bash
    git clone https://github.com/palashkumer/laravelTodo.git
-   cd note
+   cd laravelTodo
 
 
 # 2. Navigate to the project directory
