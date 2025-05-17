@@ -17,7 +17,7 @@ class ProductController extends Controller
         return view('products.list', ['products' => $products]);
     }
 
-    // This method will create products 
+    // This method will create products
     public function create()
     {
         return view('products.create');
@@ -115,8 +115,7 @@ class ProductController extends Controller
         }
         return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
-
-    // This method will delete products 
+    // This method will delete products
     public function destroy($id)
     {
         $product = Product::findOrFail($id);

@@ -9,11 +9,13 @@ Route::get('/', function () {
 
 
 
-Route::controller(ProductController::class)->group(function () {
-    Route::get('/products/index', 'index')->name('products.index');
-    Route::get('/products/create', 'create')->name('products.create');
-    Route::post('/products/store',  'store')->name('products.store');
-    Route::get('/products/{product}/edit', 'edit')->name('products.edit');
-    Route::put('/products/{product}', 'update')->name('products.update');
-    Route::delete('/products/{product}', 'destroy')->name('products.destroy');
-});
+// Route::controller(ProductController::class)->group(function () {
+//     Route::get('/products/index', 'index')->name('products.index');
+//     Route::get('/products/create', 'create')->name('products.create');
+//     Route::post('/products/store',  'store')->name('products.store');
+//     Route::get('/products/{product}/edit', 'edit')->name('products.edit');
+//     Route::put('/products/{product}', 'update')->name('products.update');
+//     Route::delete('/products/{product}', 'destroy')->name('products.destroy');
+// });
+
+Route::resource('products', ProductController::class);
